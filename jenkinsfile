@@ -1,0 +1,40 @@
+pipeline {
+
+    agent any
+
+    options {
+        ansiColor('xterm')
+    }
+
+    environment {
+        // variables to be defined
+    }
+
+    parameters {
+        string (
+            name: 'parameterName',
+            description: 'The pipeline parameter',
+            defaultValue: '',
+            trim: true
+        )
+        choice (
+            name: 'choices',
+            description: '',
+            choices: [--select--, choice1, choice2]
+        )
+        booleanParam(
+            name: 'true?',
+            description: '',
+            defaultValue: true
+        )
+    }
+
+    stages {
+        stage(first stage) {
+            sh label: 'executing shell script',
+            script: '''
+                echo "Hello World"
+            '''
+        }
+    }
+}
